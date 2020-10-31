@@ -11,7 +11,7 @@
         } else {
           $.ajax({
             method: 'POST',
-            url: 'https://formspree.io/xgeowppv',
+            url: 'https://formspree.io/f/xgeowppv',
             data: $('#contact-form').serialize(),
             datatype: 'json' });
   
