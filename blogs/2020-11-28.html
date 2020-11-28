@@ -40,49 +40,6 @@
 
             <footer class="footer-main" style="padding: 5px 0;"></footer>
 
-           <h1 id="hydra">Hydra</h1>
-<p><strong>Hydra</strong> is a brute force online password cracking program; a quick system login password <strong>&#39;hacking&#39;</strong> tool.</p>
-<ul>
-<li>We can use Hydra to run through a list and &#39;bruteforce&#39; some  authentication service. Imagine trying to manually guess someones  password on a particular service (SSH, WebApplication Form, FTP or  SNMP) - we can use Hydra to run through a password list and speed this  process up for us, determining the correct password.</li>
-<li>Hydra has the ability to bruteforce the following protocols: Asterisk, AFP, Cisco AAA, Cisco auth, Cisco enable, CVS, Firebird, FTP,  HTTP-FORM-GET, HTTP-FORM-POST, HTTP-GET,HTTP-HEAD, HTTP-POST, HTTP-PROXY, HTTPS-FORM-GET, HTTPS-FORM-POST, HTTPS-GET, HTTPS-HEAD, HTTPS-POST, HTTP-Proxy, ICQ, IMAP, IRC, LDAP, MS-SQL, MYSQL, NCP,NNTP, Oracle Listener, Oracle SID, Oracle, PC-Anywhere, PCNFS, POP3, POSTGRES, RDP, Rexec, Rlogin, Rsh, RTSP, SAP/R3, SIP, SMB, SMTP, SMTP Enum, SNMP v1+v2+v3,SOCKS5, SSH (v1 and v2), SSHKEY, Subversion, Teamspeak (TS2), Telnet, VMware-Auth, VNC and XMPP.</li>
-<li>This shows the importance of using a strong password, if your password is common, doesn&#39;t contain special characters and/or is not above 8 characters, its going to be prone tobeing guessed. 100 million password lists exist containing common passwords, so when an out-of-the-box application uses an easy password to login, make sure to change itfrom the default! Often CCTV camera&#39;s and web frameworks use admin:password as the default password, which is obviously not strong enough.</li>
-</ul>
-<h2 id="how-to-use-hydra">How to use Hydra</h2>
-<ul>
-<li><h4 id="hydra-commands">Hydra Commands</h4>
-The options we pass into Hydra depends on  which service (protocol) we&#39;re attacking. For example if we wanted to bruteforce FTP with the username being user and a password list being  passlist.txt, we&#39;d use the followingcommand:</li>
-</ul>
-<p><code>hydra -l user -P passlist.txt ftp://10.10.188.212</code></p>
-<p>For the purpose of this deployed machine, here are the commands to use Hydra on SSH and a web form (POSTmethod).</p>
-<ul>
-<li><h4 id="ssh">SSH</h4>
-<p><code>hydra -l &lt;username&gt; -P &lt;full path to pass&gt; 10.10.188.212 -t 4 ssh</code></p>
-</li>
-<li><h4 id="post-web-form">Post Web Form</h4>
-<p>We can use Hydra to bruteforce web forms too,  you will have to make sure you know which type of request itsmaking - a  GET or POST methods are normally used. You can use your browsers  network tab (in developer tools) tosee the request types, or simply  view the source code.</p>
-</li>
-</ul>
-<p>Below is an example Hydra command to brute force a POST login form:</p>
-<p><code>hydra  -l &lt;username&gt; -P &lt;wordlist&gt; 10.10.188.212 http-post-form &quot;/:username=^USER^&amp;password=^PASS^:F=incorrect&quot;</code></p>
-<h4 id="challenge-1">Challenge 1</h4>
-<h5 id="use-hydra-to-bruteforce-molly-s-web-password-what-is-flag-1-">Use Hydra to bruteforce molly&#39;s web password. What is flag 1?</h5>
-<p>After deploy the machine I visited the IP address to check what its running on the server.</p>
-<p><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
-<p>First I tried to intercept its request to check the method and parameters of the login page, with its given username: molly and some common random passwords.</p>
-<p><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
-<p>So, the login page is using post method and its parameters are “username=^USER^&amp;password=^PASS^” and the error message its showing is “Your username or password isincorrect.&quot;</p>
-<h4 id="time-to-bruteforce-the-login-page-">Time to bruteforce the login page:</h4>
-<p>Command that I used:</p>
-<p><code>hydra -l molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS http-post-form “/login:username=^USER^&amp;password=^PASS^:Your username or passsword is incorrect.”</code></p>
-<p><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image3.png" alt="alt text" title="Logo Title Text 1"></p>
-<h4 id="challenge-2">Challenge 2</h4>
-<h5 id="use-hydra-to-bruteforce-molly-s-ssh-password-what-is-flag-2-">Use Hydra to bruteforce molly&#39;s SSH password. What is flag 2?</h5>
-<p>To ssh into a machine we need to provide its username and its IP address along with its password. But we do not have ssh password for this machine. So let&#39;s bruteforce.</p>
-<p>Command that I used:</p>
-<p><code>hydra -l molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS -t 4 ssh</code></p>
-<p><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image5.png" alt="alt text" title="Logo Title Text 1">
-<img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image6.png" alt="alt text" title="Logo Title Text 1"></p>
-
 
             <footer class="footer-main">
                 © Umesh Chandra Bhuyan 2019
