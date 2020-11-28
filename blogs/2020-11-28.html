@@ -37,57 +37,57 @@
 
             <footer class="footer-main" style="padding: 5px 0;"></footer>
 
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Hydra_0"></a>Hydra</h1>
-<p class="has-line-data" data-line-start="1" data-line-end="2">Hydra is a brute force online password cracking program; a quick system login password hacking tool.</p>
-<p class="has-line-data" data-line-start="3" data-line-end="4">We can use Hydra to run through a list and ‘bruteforce’ some  authentication service. Imagine trying to manually guess someones  password on a particular service (SSH, WebApplication Form, FTP or  SNMP) - we can use Hydra to run through a password list and speed this  process up for us, determining the correct password.</p>
-<p class="has-line-data" data-line-start="5" data-line-end="6">Hydra has the ability to bruteforce the following protocols: Asterisk, AFP, Cisco AAA, Cisco auth, Cisco enable, CVS, Firebird, FTP,  HTTP-FORM-GET, HTTP-FORM-POST, HTTP-GET,HTTP-HEAD, HTTP-POST, HTTP-PROXY, HTTPS-FORM-GET, HTTPS-FORM-POST, HTTPS-GET, HTTPS-HEAD, HTTPS-POST, HTTP-Proxy, ICQ, IMAP, IRC, LDAP, MS-SQL, MYSQL, NCP,NNTP, Oracle Listener, Oracle SID, Oracle, PC-Anywhere, PCNFS, POP3, POSTGRES, RDP, Rexec, Rlogin, Rsh, RTSP, SAP/R3, SIP, SMB, SMTP, SMTP Enum, SNMP v1+v2+v3,SOCKS5, SSH (v1 and v2), SSHKEY, Subversion, Teamspeak (TS2), Telnet, VMware-Auth, VNC and XMPP.</p>
-<p class="has-line-data" data-line-start="7" data-line-end="8">This shows the importance of using a strong password, if your password is common, doesn’t contain special characters and/or is not above 8 characters, its going to be prone tobeing guessed. 100 million password lists exist containing common passwords, so when an out-of-the-box application uses an easy password to login, make sure to change itfrom the default! Often CCTV camera’s and web frameworks use admin:password as the default password, which is obviously not strong enough.</p>
-<h2 class="code-line" data-line-start=9 data-line-end=10 ><a id="How_to_use_Hydra_9"></a>How to use Hydra</h2>
-<ul>
-<li class="has-line-data" data-line-start="10" data-line-end="11">
-<h4 class="code-line" data-line-start=10 data-line-end=11 ><a id="Hydra_Commands_10"></a>Hydra Commands</h4>
-</li>
-</ul>
-<p class="has-line-data" data-line-start="11" data-line-end="12">The options we pass into Hydra depends on  which service (protocol) we’re attacking. For example if we wanted to bruteforce FTP with the username being user and a password list being  passlist.txt, we’d use the followingcommand:</p>
-<pre><code class="has-line-data" data-line-start="14" data-line-end="16" class="language-sh">hydra <span class="hljs-operator">-l</span> user -P passlist.txt ftp://<span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span>
-</code></pre>
-<p class="has-line-data" data-line-start="17" data-line-end="18">For the purpose of this deployed machine, here are the commands to use Hydra on SSH and a web form (POSTmethod).</p>
-<ul>
-<li class="has-line-data" data-line-start="19" data-line-end="20">
-<h4 class="code-line" data-line-start=19 data-line-end=20 ><a id="SSH_19"></a>SSH</h4>
-</li>
-</ul>
-<pre><code class="has-line-data" data-line-start="21" data-line-end="23" class="language-sh">hydra <span class="hljs-operator">-l</span> &lt;username&gt; -P &lt;full path to pass&gt; <span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span> -t <span class="hljs-number">4</span> ssh
-</code></pre>
-<ul>
-<li class="has-line-data" data-line-start="24" data-line-end="25">
-<h4 class="code-line" data-line-start=24 data-line-end=25 ><a id="Post_Web_Form_24"></a>Post Web Form</h4>
-</li>
-</ul>
-<p class="has-line-data" data-line-start="25" data-line-end="26">We can use Hydra to bruteforce web forms too,  you will have to make sure you know which type of request itsmaking - a  GET or POST methods are normally used. You can use your browsers  network tab (in developer tools) tosee the request types, or simply  view the source code.</p>
-<p class="has-line-data" data-line-start="27" data-line-end="28">Below is an example Hydra command to brute force a POST login form:</p>
-<pre><code class="has-line-data" data-line-start="30" data-line-end="32" class="language-sh">hydra  <span class="hljs-operator">-l</span> &lt;username&gt; -P &lt;wordlist&gt; <span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span> http-post-form <span class="hljs-string">"/:username=^USER^&amp;password=^PASS^:F=incorrect"</span>
-</code></pre>
-<h4 class="code-line" data-line-start=33 data-line-end=34 ><a id="Challenge_1_33"></a>Challenge 1</h4>
-<h5 class="code-line" data-line-start=34 data-line-end=35 ><a id="Use_Hydra_to_bruteforce_mollys_web_password_What_is_flag_1_34"></a>Use Hydra to bruteforce molly’s web password. What is flag 1?</h5>
-<p class="has-line-data" data-line-start="36" data-line-end="37">After deploy the machine I visited the IP address to check what its running on the server.</p>
-<p class="has-line-data" data-line-start="38" data-line-end="39"><img src="../resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
-<p class="has-line-data" data-line-start="40" data-line-end="41">First I tried to intercept its request to check the method and parameters of the login page, with its given username: molly and some common random passwords.</p>
-<p class="has-line-data" data-line-start="42" data-line-end="43"><img src="../resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
-<p class="has-line-data" data-line-start="44" data-line-end="45">So, the login page is using post method and its parameters are “username=<sup>USER</sup>&amp;password=<sup>PASS</sup>” and the error message its showing is “Your username or password isincorrect.&quot;</p>
-<h4 class="code-line" data-line-start=46 data-line-end=47 ><a id="Time_to_bruteforce_the_login_page_46"></a>Time to bruteforce the login page:</h4>
-<p class="has-line-data" data-line-start="47" data-line-end="48">Command that I used:</p>
-<pre><code class="has-line-data" data-line-start="50" data-line-end="52" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS http-post-form “/login:username=^USER^&amp;password=^PASS^:Your username or passsword is incorrect.”
-</code></pre>
-<p class="has-line-data" data-line-start="53" data-line-end="54"><img src="../resources/images/image3.png" alt="alt text" title="Logo Title Text 1"></p>
-<h4 class="code-line" data-line-start=55 data-line-end=56 ><a id="Challenge_2_55"></a>Challenge 2</h4>
-<h5 class="code-line" data-line-start=56 data-line-end=57 ><a id="Use_Hydra_to_bruteforce_mollys_SSH_password_What_is_flag_2_56"></a>Use Hydra to bruteforce molly’s SSH password. What is flag 2?</h5>
-<p class="has-line-data" data-line-start="57" data-line-end="58">To ssh into a machine we need to provide its username and its IP address along with its password. But we do not have ssh password for this machine. So let’s bruteforce.</p>
-<p class="has-line-data" data-line-start="59" data-line-end="60">Command that I used:</p>
-<pre><code class="has-line-data" data-line-start="62" data-line-end="64" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS -t <span class="hljs-number">4</span> 
-</code></pre>
-<p class="has-line-data" data-line-start="65" data-line-end="67"><img src="../resources/images/image5.png" alt="alt text" title="Logo Title Text 1"><br>
-<img src="../resources/images/image6.png" alt="alt text" title="Logo Title Text 1"></p>
+            <center><h1 data-line-start=0 data-line-end=1 ><a id="Hydra_0"></a>Hydra</h1></center>
+            <p class="has-line-data" data-line-start="2" data-line-end="3">Hydra is a brute force online password cracking program; a quick system login password hacking tool.</p>
+            <p class="has-line-data" data-line-start="4" data-line-end="5">We can use Hydra to run through a list and ‘bruteforce’ some  authentication service. Imagine trying to manually guess someones  password on a particular service (SSH, WebApplication Form, FTP or  SNMP) - we can use Hydra to run through a password list and speed this  process up for us, determining the correct password.</p>
+            <p class="has-line-data" data-line-start="6" data-line-end="7">Hydra has the ability to bruteforce the following protocols: Asterisk, AFP, Cisco AAA, Cisco auth, Cisco enable, CVS, Firebird, FTP,  HTTP-FORM-GET, HTTP-FORM-POST, HTTP-GET,HTTP-HEAD, HTTP-POST, HTTP-PROXY, HTTPS-FORM-GET, HTTPS-FORM-POST, HTTPS-GET, HTTPS-HEAD, HTTPS-POST, HTTP-Proxy, ICQ, IMAP, IRC, LDAP, MS-SQL, MYSQL, NCP,NNTP, Oracle Listener, Oracle SID, Oracle, PC-Anywhere, PCNFS, POP3, POSTGRES, RDP, Rexec, Rlogin, Rsh, RTSP, SAP/R3, SIP, SMB, SMTP, SMTP Enum, SNMP v1+v2+v3,SOCKS5, SSH (v1 and v2), SSHKEY, Subversion, Teamspeak (TS2), Telnet, VMware-Auth, VNC and XMPP.</p>
+            <p class="has-line-data" data-line-start="8" data-line-end="9">This shows the importance of using a strong password, if your password is common, doesn’t contain special characters and/or is not above 8 characters, its going to be prone tobeing guessed. 100 million password lists exist containing common passwords, so when an out-of-the-box application uses an easy password to login, make sure to change itfrom the default! Often CCTV camera’s and web frameworks use admin:password as the default password, which is obviously not strong enough.</p>
+            <h2 class="code-line" data-line-start=10 data-line-end=11 ><a id="How_to_use_Hydra_10"></a>How to use Hydra</h2>
+            <ul>
+            <li class="has-line-data" data-line-start="11" data-line-end="12">
+            <h4 class="code-line" data-line-start=11 data-line-end=12 ><a id="Hydra_Commands_11"></a>Hydra Commands</h4>
+            </li>
+            </ul>
+            <p class="has-line-data" data-line-start="12" data-line-end="13">The options we pass into Hydra depends on  which service (protocol) we’re attacking. For example if we wanted to bruteforce FTP with the username being user and a password list being  passlist.txt, we’d use the followingcommand:</p>
+            <pre><code class="has-line-data" data-line-start="15" data-line-end="17" class="language-sh">hydra <span class="hljs-operator">-l</span> user -P passlist.txt ftp://<span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span>
+            </code></pre>
+            <p class="has-line-data" data-line-start="18" data-line-end="19">For the purpose of this deployed machine, here are the commands to use Hydra on SSH and a web form (POSTmethod).</p>
+            <ul>
+            <li class="has-line-data" data-line-start="20" data-line-end="21">
+            <h4 class="code-line" data-line-start=20 data-line-end=21 ><a id="SSH_20"></a>SSH</h4>
+            </li>
+            </ul>
+            <pre><code class="has-line-data" data-line-start="22" data-line-end="24" class="language-sh">hydra <span class="hljs-operator">-l</span> &lt;username&gt; -P &lt;full path to pass&gt; <span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span> -t <span class="hljs-number">4</span> ssh
+            </code></pre>
+            <ul>
+            <li class="has-line-data" data-line-start="25" data-line-end="26">
+            <h4 class="code-line" data-line-start=25 data-line-end=26 ><a id="Post_Web_Form_25"></a>Post Web Form</h4>
+            </li>
+            </ul>
+            <p class="has-line-data" data-line-start="26" data-line-end="27">We can use Hydra to bruteforce web forms too,  you will have to make sure you know which type of request itsmaking - a  GET or POST methods are normally used. You can use your browsers  network tab (in developer tools) tosee the request types, or simply  view the source code.</p>
+            <p class="has-line-data" data-line-start="28" data-line-end="29">Below is an example Hydra command to brute force a POST login form:</p>
+            <pre><code class="has-line-data" data-line-start="31" data-line-end="33" class="language-sh">hydra  <span class="hljs-operator">-l</span> &lt;username&gt; -P &lt;wordlist&gt; <span class="hljs-number">10.10</span>.<span class="hljs-number">188.212</span> http-post-form <span class="hljs-string">"/:username=^USER^&amp;password=^PASS^:F=incorrect"</span>
+            </code></pre>
+            <h4 class="code-line" data-line-start=34 data-line-end=35 ><a id="Challenge_1_34"></a>Challenge 1</h4>
+            <p class="has-line-data" data-line-start="35" data-line-end="36">Use Hydra to bruteforce molly’s web password. What is flag 1?</p>
+            <p class="has-line-data" data-line-start="37" data-line-end="38">After deploy the machine I visited the IP address to check what its running on the server.</p>
+            <p class="has-line-data" data-line-start="39" data-line-end="40"><img src="../resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="41" data-line-end="42">First I tried to intercept its request to check the method and parameters of the login page, with its given username: molly and some common random passwords.</p>
+            <p class="has-line-data" data-line-start="43" data-line-end="44"><img src="../resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="45" data-line-end="46">So, the login page is using post method and its parameters are “username=<sup>USER</sup>&amp;password=<sup>PASS</sup>” and the error message its showing is “Your username or password isincorrect.&quot;</p>
+            <h4 class="code-line" data-line-start=47 data-line-end=48 ><a id="Time_to_bruteforce_the_login_page_47"></a>Time to bruteforce the login page:</h4>
+            <p class="has-line-data" data-line-start="48" data-line-end="49">Command that I used:</p>
+            <pre><code class="has-line-data" data-line-start="51" data-line-end="53" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS http-post-form “/login:username=^USER^&amp;password=^PASS^:Your username or passsword is incorrect.”
+            </code></pre>
+            <p class="has-line-data" data-line-start="54" data-line-end="55"><img src="../resources/images/image3.png" alt="alt text" title="Logo Title Text 1"></p>
+            <h4 class="code-line" data-line-start=56 data-line-end=57 ><a id="Challenge_2_56"></a>Challenge 2</h4>
+            <p class="has-line-data" data-line-start="57" data-line-end="58">Use Hydra to bruteforce molly’s SSH password. What is flag 2?</p>
+            <p class="has-line-data" data-line-start="59" data-line-end="60">To ssh into a machine we need to provide its username and its IP address along with its password. But we do not have ssh password for this machine. So let’s bruteforce.</p>
+            <p class="has-line-data" data-line-start="61" data-line-end="62">Command that I used:</p>
+            <pre><code class="has-line-data" data-line-start="64" data-line-end="66" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS -t <span class="hljs-number">4</span> 
+            </code></pre>
+            <p class="has-line-data" data-line-start="67" data-line-end="69"><img src="../resources/images/image5.png" alt="alt text" title="Logo Title Text 1"><br>
+            <img src="../resources/images/image6.png" alt="alt text" title="Logo Title Text 1"></p>
 
            
 
