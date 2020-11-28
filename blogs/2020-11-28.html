@@ -74,7 +74,7 @@
             <p class="has-line-data" data-line-start="39" data-line-end="40"><img src="../resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
             <p class="has-line-data" data-line-start="41" data-line-end="42">First I tried to intercept its request to check the method and parameters of the login page, with its given username: molly and some common random passwords.</p>
             <p class="has-line-data" data-line-start="43" data-line-end="44"><img src="../resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
-            <p class="has-line-data" data-line-start="45" data-line-end="46">So, the login page is using post method and its parameters are “username=<sup>USER</sup>&amp;password=<sup>PASS</sup>” and the error message its showing is “Your username or password isincorrect.&quot;</p>
+            <p class="has-line-data" data-line-start="45" data-line-end="46">So, the login page is using post method and its parameters are “username=^USER^&amp;password=^PASS^” and the error message its showing is “Your username or password isincorrect.&quot;</p>
             <h4 class="code-line" data-line-start=47 data-line-end=48 ><a id="Time_to_bruteforce_the_login_page_47"></a>Time to bruteforce the login page:</h4>
             <p class="has-line-data" data-line-start="48" data-line-end="49">Command that I used:</p>
             <pre><code class="has-line-data" data-line-start="51" data-line-end="53" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS http-post-form “/login:username=^USER^&amp;password=^PASS^:Your username or passsword is incorrect.”
