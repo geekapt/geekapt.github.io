@@ -34,10 +34,9 @@
             </nav>
 
 
-            
+
             <footer class="footer-main" style="padding: 5px 0;"></footer>
 
-<<<<<<< HEAD
             <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Hydra_0"></a>Hydra</h1>
             <p class="has-line-data" data-line-start="1" data-line-end="2">Hydra is a brute force online password cracking program; a quick system login password hacking tool.</p>
             <ul>
@@ -74,27 +73,25 @@
             <h4 class="code-line" data-line-start=31 data-line-end=32 ><a id="Challenge_1_31"></a>Challenge 1</h4>
             <h5 class="code-line" data-line-start=32 data-line-end=33 ><a id="Use_Hydra_to_bruteforce_mollys_web_password_What_is_flag_1_32"></a>Use Hydra to bruteforce molly’s web password. What is flag 1?</h5>
             <p class="has-line-data" data-line-start="34" data-line-end="35">After deploy the machine I visited the IP address to check what its running on the server.</p>
-            <p class="has-line-data" data-line-start="36" data-line-end="37"><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="36" data-line-end="37"><img src="../resources/images/image1.png" alt="alt text" title="Logo Title Text 1"></p>
             <p class="has-line-data" data-line-start="38" data-line-end="39">First I tried to intercept its request to check the method and parameters of the login page, with its given username: molly and some common random passwords.</p>
-            <p class="has-line-data" data-line-start="40" data-line-end="41"><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="40" data-line-end="41"><img src="../resources/images/image2.png" alt="alt text" title="Logo Title Text 1"></p>
             <p class="has-line-data" data-line-start="42" data-line-end="43">So, the login page is using post method and its parameters are “username=<sup>USER</sup>&amp;password=<sup>PASS</sup>” and the error message its showing is “Your username or password isincorrect.&quot;</p>
             <h4 class="code-line" data-line-start=44 data-line-end=45 ><a id="Time_to_bruteforce_the_login_page_44"></a>Time to bruteforce the login page:</h4>
             <p class="has-line-data" data-line-start="45" data-line-end="46">Command that I used:</p>
             <pre><code class="has-line-data" data-line-start="48" data-line-end="50" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS http-post-form “/login:username=^USER^&amp;password=^PASS^:Your username or passsword is incorrect.”
             </code></pre>
-            <p class="has-line-data" data-line-start="51" data-line-end="52"><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image3.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="51" data-line-end="52"><img src="../resources/images/image3.png" alt="alt text" title="Logo Title Text 1"></p>
             <h4 class="code-line" data-line-start=53 data-line-end=54 ><a id="Challenge_2_53"></a>Challenge 2</h4>
             <h5 class="code-line" data-line-start=54 data-line-end=55 ><a id="Use_Hydra_to_bruteforce_mollys_SSH_password_What_is_flag_2_54"></a>Use Hydra to bruteforce molly’s SSH password. What is flag 2?</h5>
             <p class="has-line-data" data-line-start="55" data-line-end="56">To ssh into a machine we need to provide its username and its IP address along with its password. But we do not have ssh password for this machine. So let’s bruteforce.</p>
             <p class="has-line-data" data-line-start="57" data-line-end="58">Command that I used:</p>
             <pre><code class="has-line-data" data-line-start="60" data-line-end="62" class="language-sh">hydra <span class="hljs-operator">-l</span> molly -P /usr/share/wordlist/rockyou.txt IP ADDRESS -t <span class="hljs-number">4</span> 
             </code></pre>
-            <p class="has-line-data" data-line-start="63" data-line-end="65"><img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image5.png" alt="alt text" title="Logo Title Text 1"><br>
-            <img src="https://github.com/2x02/2x02.github.io/blob/master/resources/images/image6.png" alt="alt text" title="Logo Title Text 1"></p>
+            <p class="has-line-data" data-line-start="63" data-line-end="65"><img src="../resources/images/image5.png" alt="alt text" title="Logo Title Text 1"><br>
+            <img src="../resources/images/image6.png" alt="alt text" title="Logo Title Text 1"></p>
 
            
-=======
->>>>>>> e327bcd1ea0c03f6d996cce8893c947b956db056
 
             <footer class="footer-main">
                 © Umesh Chandra Bhuyan 2019
