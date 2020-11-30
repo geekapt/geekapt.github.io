@@ -25,7 +25,3 @@
   }).call(this);
 
 
-
-  $(document).ready(function () {
-    $('#myTable').DataTable();
-});
