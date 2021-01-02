@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Imumesh - Hydra</title>
+    <link rel="icon" type="img/x-icon" href="../resources/favicon/favicon.png">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+
+<body>
+    <div class="wrapper-normal">
+        <div class="page about">
+            <nav class="nav-home">
+                <ul class="list">
+                    <li class="item">
+                        <a class="link" href="../index" rel="canonical">Home</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../books" rel="canonical">Books</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../projects" rel="canonical">Projects</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../blog" rel="canonical">Blog</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../contact" rel="canonical">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+            <footer class="footer-main" style="padding: 5px 0;"></footer>
+
+
+            <center>
+                <h1 class="size-50" style="color: aliceblue;">Linux Fundamentals</h1>
+            </center>
+            <p style="text-align: justify;">When you starting your career in cybersecurity, you must know how to use the
+                Linux operating system, a critical skill in cyber security. Many servers and security tools use Linux,
+                and people like me use Linux as their daily driver who are interested in IT security.</p>
+            <p style="text-align: justify;">Linux is one of the major operating system used in organisations all around
+                the world. Well if you are kinda interested in cybersecurity and wants to learn hacking your should
+                probabily start using Linux.</p>
+            <p style="text-align: justify;">This article is a walkthought of <strong
+                    style="color:teal;">TRYHACKME</strong> practice module,
+                this module will focus on getting you comfortable usnig Linux.</p>
+            <h2 style="text-align: justify;">&nbsp;</h2>
+            <h2 style="text-align: justify; color: cornflowerblue;">Linux Fundamentals Part 1</h2>
+            <p style="text-align: justify;">Well to practice and learn no need to install any linux operating system on
+                your existing shitty <strong style="color: teal">Windows</strong>. <strong
+                    style="color: teal;">TryHackMe</strong> has its cloud server machines
+                where you can deploy and access your own remote (web-based) linux machine.</p>
+            <p style="text-align: justify;">First part is an introduction to the Linux basics by learning how to use
+                fundamentally important commands. This room covers the following topics:</p>
+            <ul style="text-align: justify;">
+                <li style=" color: chartreuse;">Introduction To Linux</li>
+                <li style=" color: chartreuse;">Executing Commands and Man Pages</li>
+                <li style=" color: chartreuse;">Basic File Operators</li>
+            </ul>
+            <p style="text-align: justify; "><strong style=" color: cornflowerblue;">Task 1: Intro</strong></p>
+            <p style="text-align: justify;">If you have your own linux distro then you can SSH into the machine, connect
+                to thier network and use the following SSH login credentials:<br />&nbsp; &nbsp; Username:
+                <code>shiba1</code><br />&nbsp; &nbsp; Password: <code >shiba1</code></p>
+            <p style="text-align: justify;">Or if you still want to stick to that shitty windows machine, then use
+                <strong style=" color: teal;">Putty</strong> to ssh the TryHackMe machine.</p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 2: Methodology
+                    </strong></p>
+            <p style="text-align: justify;">After careful consideration, I've deemed the best way to go about this is to
+                introduce various concepts in sections, with each section being more complex and requiring knowledge
+                from the previous section. To better enable the transition between section, I've split each section into
+                different users in the VM; when you finish a section you'll have to complete a challenge and then you'll
+                be able to move onto the next section.</p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 3: Basic
+                        Command Execution</strong>
+            </p>
+            <p style="text-align: justify;">Now, after you logged into the server, we will take a look at some of the
+                basic commands, and the first command will be echo. Type <code>echo hello</code>, and press enter and
+                you'll see your input echoed back at you.</p>
+            <p style="text-align: justify;"><img src="/resources/images/hello.png" alt="" /></p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 4: Manual
+                        Pages and Flags </strong>
+            </p>
+            <p style="text-align: justify;">Remembering all the commands and its hundreds of sub options is not
+                possible, these options are known as flags.and have the format <code>&lt;command&gt; &lt;flag&gt;
+                    &lt;input&gt;</code>. You no need to remember all these flags, these flags can be learned about
+                using the <code>man</code> command.</p>
+            <p style="text-align: justify;">Typing that shows us a nicely formatted document:</p>
+            <p style="text-align: justify;"><img src="/resources/images/man2.png" alt="" /></p>
+            <p style="text-align: justify;">How would you output hello without a newline?</p>
+            <p style="text-align: justify;">Ans: echo -n hello</p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 5: Basic File
+                        Operations - ls</strong></p>
+            <p style="text-align: justify;">ls is a command that lists information about every file or directory in the
+                directory. Just running the ls command outputs the name of every file in the directory.</p>
+            <p style="text-align: justify;">As with other commands ls has many flags that can manipulate the
+                output.&nbsp; For example <code>ls -a</code> shows all files/directories including ones that start with
+                <code>.</code></p>
+            <p style="text-align: justify;">What flag outputs all entries?</p>
+            <p style="text-align: justify;">Ans: -a</p>
+            <p style="text-align: justify;">What flag outputs things in a "long list" format?</p>
+
+
+            <p style="text-align: justify;">Ans: -l</p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 6: Basic File
+                        Operations - cat
+                    </strong></p>
+            <p style="text-align: justify;">cat short for concatenate, does exactly that, it outputs the contents of
+                files to the console. For example, given a file called a.txt which contains the data "hello", <code>cat
+                    a.txt</code> would output hello.</p>
+            <p>What flag numbers all output lines?</p>
+            <p>Ans: -n</p>
+            <p><strong style=" color: cornflowerblue;">Task 7: Basic File Operations] - touch
+                    </strong></p>
+            <p>touch is a pretty simple command, it creates files. Given the command <code>touch b.txt</code>, b.txt
+                would be created.</p>
+            <p><strong style=" color: cornflowerblue;">Task 8:  Basic File Operations - Running A
+                        Binary</strong></p>
+            <p>Occasionally there will be times when you want to run downloaded or user created programs. This is
+                done by providing the full path to the binary, for example say you download a binary that outputs
+                noot, providing the full path to that binary will execute it.</p>
+            <p><img style="width: 380px;" src="/resources/images/PKDp1eF.png" /></p>
+            <p><strong style="color: white;">Note:</strong> A binary is a executable code like exe file in Windos.</p>
+            <p style="text-align: justify;">Dot ( . ) represents current directory in Linux. Eg: ./hello</p>
+            <p style="text-align: justify;">Double Dot ( .. ) represents Directory before the current directory. Eg:
+                ../hello</p>
+            <p style="text-align: justify; ">Tilde ( ~ ) represents User's home directory. Eg: ~/hello</p>
+            <p style="text-align: justify; ">How would you run a binary called hello using the directory shortcut. ?</p>
+            <p>Ans: ./hello</p>
+            <p>How would you run a binary called hello in your home directory using the shortcut ~ ?</p>
+            <p>Ans: ~/hello</p>
+            <p>How would you run a binary called hello in the previous directory using the shortcut .. ?</p>
+            <p>Ans: ../hello</p>
+            <p><strong style=" color: cornflowerblue;">Task 9: Binary - Shiba1 </strong></p>
+            <p>This task is&nbsp; to run a binary called shiba1, which will create a file called noot.txt. Once
+                you're done run the binary and you'll be given the password for the user shiba2!</p>
+            <p>Note: the name of the binary is shiba1, as shown in the title</p>
+            <p>What's the password for shiba2?</p>
+            <p>Ans: pinguftw</p>
+            <p><strong style=" color: cornflowerblue;">Task 10: su </strong></p>
+            <p>Now that we have our next user password, it seems like a good time to cover su. su is a
+                command that allows you to change the user, without logging out and logging back in again.
+                For example if you wanted to switch to shiba2 while you're the user shiba1, you would type
+                su shiba2 . You would then be prompted for a password and if you entered shiba2's password
+                you would then become shiba2.</p>
+            <p><img style="width: 246px;" src="/resources/images/iZhPtJf.png" /></p>
+            <p style="text-align: justify;">Note: Typing su on its own is equivalent to typing su root.</p>
+            <p style="text-align: justify;">How do you specify which shell is used when you login?</p>
+            <p style="text-align: justify;">Ans: -s</p>
+            <p style="text-align: justify;"><strong style=" color: cornflowerblue;">Task 11: Linux Fundamentals 2</strong>
+            </p>
+            <p>Now that you have some beginner knowledge to using Linux, its time you take it a step further and join
+                the <a href="https://tryhackme.com/room/linux2">Linux Fundamentals 2</a> room.</p>
+            <footer class="footer-main">
+                © Umesh Chandra Bhuyan 2019
+            </footer>
+
+        </div>
+</body>
+
+</html>
+</div>
