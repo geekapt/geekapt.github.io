@@ -21,7 +21,7 @@ html {
 .wrapper-normal,
 .wrapper-large {
     height: 100%;
-    widows: 96%;
+    width: 96%;
     margin: 0 auto;
 }
 
@@ -557,4 +557,29 @@ li a:hover {
     100% {
         clip: rect(82px, 9999px, 28px, 0);
     }
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    .wrapper-normal,
+    .wrapper-large {
+        width: 88%;
+    }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 1050px) {
+
+    .wrapper-normal,
+    .wrapper-large {
+        width: 88%;
+    }
+}
+
+.wrapper-normal {
+    max-width: 560px;
+}
+
+.wrapper-large {
+    max-width: 810px;
 }
