@@ -5,7 +5,10 @@ body {
     overflow-x: hidden;
     background-color: black;
     font-size: 16px "Helvetica Neue", Helvetica, Arial, Sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
+
 
 body,
 html {
