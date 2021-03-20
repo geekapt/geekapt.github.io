@@ -5,8 +5,8 @@ body {
     overflow-x: hidden;
     background-color: black;
     font-size: 16px "Helvetica Neue", Helvetica, Arial, Sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x: unset;
+    overflow-y: scroll;
 }
 
 
@@ -569,6 +569,10 @@ li a:hover {
     .wrapper-large {
         width: 88%;
     }
+
+    body {
+        margin: 0%;
+    }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 1050px) {
@@ -577,6 +581,10 @@ li a:hover {
     .wrapper-large {
         width: 88%;
     }
+}
+
+body {
+    margin: 0%;
 }
 
 .wrapper-normal {
